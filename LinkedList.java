@@ -29,7 +29,7 @@ public class LinkedList {
         for (int i = 1; i < arr.length; i++) {
             Node temp = new Node(arr[i]); // temp = [8, null];
             mover.next = temp; // mover.next = [8, null]; *Pointer to the next Node*
-            mover = mover.next; // mover = [8, null];
+            mover = mover.next; // mover = [8, null] and so on!
         }
 
         // Traversing a Linked List
