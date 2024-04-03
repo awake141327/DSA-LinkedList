@@ -1,4 +1,4 @@
-class OddEvenLinkedList {
+public class PalindromeLL {
 
     // Defining the Node Class
     static class Node {
@@ -31,24 +31,41 @@ class OddEvenLinkedList {
         return head;
     }
 
-    // Odd Even Linked List Function
-    public static Node OddEvenLL(Node head) {
-        if (head == null || head.next == null) {
-            return head;
+    // Reversing a Linked List
+    public static Node reverse(Node head) {
+        Node temp = head;
+        Node prev = null;
+        while(temp != null) {
+            Node front = temp.next;
+            temp.next = prev;
+            prev = temp;
+            temp = front;
         }
-        
-        Node odd = head; // 1, 2, 3, 4, 5
-        Node even = head.next; // 2, 3, 4, 5
-        Node evenHead = head.next;
-        
-        while (even != null && even.next != null) {
-            odd.next = odd.next.next; // 1 -> 3 -> 5
-            odd = odd.next;  // 3, 5
-            even.next = even.next.next; // 2 -> 4 -> null;
-            even = even.next; // 4, null
+        return prev;
+    }
+
+    // Checking if a Linked List is Palindrome
+    public static boolean isPalindrome(Node head) {
+        Node slow = head; // 1,2,3,3,2,1
+        Node fast = head; // 1,2,3,3,2,1
+        while(fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        odd.next = evenHead;
-        return head;
+        Node newHead = reverse(slow.next); // 3, 2, 1 => 1, 2, 3
+        Node first = head;
+        Node second = newHead;
+        while(second!=null) {
+            if (first.val != second.val) {
+                reverse(newHead);
+                return false;
+            }
+            
+            first = first.next;
+            second = second.next;
+        }
+        reverse(newHead);
+        return true;
     }
 
     // Printing a Linked List
@@ -65,7 +82,6 @@ class OddEvenLinkedList {
         int arr[] = {1, 2, 3, 4, 5};
         Node head = Conversion(arr);
         Print(head);
-        head = OddEvenLL(head);
-        Print(head);
+        System.out.println(isPalindrome(head));
     }
 }
