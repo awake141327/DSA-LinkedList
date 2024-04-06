@@ -91,8 +91,8 @@ class DeletionDLL {
         Node prev = temp.back;
         Node front = temp.next;
         if (prev == null && front == null) return null;
-        else if (prev == null) deleteAtHead(temp);
-        else if (front == null) deleteAtTail(temp);
+        else if (prev == null) return deleteAtHead(temp);
+        else if (front == null) return deleteAtTail(temp);
 
         prev.next = front;
         front.back = prev;
