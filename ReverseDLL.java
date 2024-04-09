@@ -48,7 +48,6 @@ class ReverseDLL {
 
     // Reversing a Doubly Linked List
     public static Node reversingDLL(Node head) {
-        // [null(prev), 1(temp), 2(front), 3,  null] => [null, 2, 1, null];
         Node temp = head;
         Node prev = null;
         while(temp != null) {
